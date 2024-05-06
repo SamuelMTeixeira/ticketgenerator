@@ -40,10 +40,6 @@ class PluginTicketgeneratorConfig extends CommonDBTM
       global $CFG_GLPI, $DB;
       $ID = $_REQUEST['id'];
 
-      $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-      $protocol = $is_secure ? 'https://' : 'http://';
-      $url = $protocol . $_SERVER['HTTP_HOST'];
-
       echo "<head>";
       echo "<script type='text/javascript'>";
       echo "function setIframeSource() {";
@@ -56,7 +52,7 @@ class PluginTicketgeneratorConfig extends CommonDBTM
       echo "</script>";
       echo "</head>";
       echo "<body>";
-      echo "<iframe id='OsIframe' src='$url/plugins/ticketgenerator/front/ticketgenerator_pdf.php?id=$ID' frameborder='0' marginwidth='0' marginheight='0' width='100%' height='700'></iframe>";
+      echo "<iframe id='OsIframe' src='/plugins/ticketgenerator/front/ticketgenerator_pdf.php?id=$ID' frameborder='0' marginwidth='0' marginheight='0' width='100%' height='700'></iframe>";
       echo "</body>";
    }
 }
