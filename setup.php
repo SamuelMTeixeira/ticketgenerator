@@ -29,7 +29,7 @@
  */
 
 
-define('PLUGIN_TICKETGENERATOR_VERSION', '0.0.1');
+define('PLUGIN_TICKETGENERATOR_VERSION', '0.0.2');
 define('PLUGIN_TICKETGENERATOR_MIN_GLPI', '10.0.0');
 define('PLUGIN_TICKETGENERATOR_MAX_GLPI', '10.99.99');
 
@@ -52,7 +52,7 @@ function plugin_version_ticketgenerator()
     'version'       => PLUGIN_TICKETGENERATOR_VERSION,
     'author'        => 'Samuel Molendolff',
     'license'       => 'AGPLv3+',
-    'homepage'      => 'https://github.com/SamuelMTeixeira',
+    'homepage'      => 'https://github.com/SamuelMTeixeira/ticketgenerator',
     'requirements'  => [
       'glpi'  => [
         'min' => PLUGIN_TICKETGENERATOR_MIN_GLPI,

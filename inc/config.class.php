@@ -1,26 +1,31 @@
 <?php
-class PluginTicketgeneratorConfig extends CommonDBTM {
+class PluginTicketgeneratorConfig extends CommonDBTM
+{
    static protected $notable = true;
-   static function getMenuName() {
+   static function getMenuName()
+   {
       return __('ticketgenerator');
    }
-   static function getMenuContent() {
-   	global $CFG_GLPI;
-   	$menu = array();
-      $menu['title']   = __('Etiqueta menu','ticketgenerator');
+   static function getMenuContent()
+   {
+      global $CFG_GLPI;
+      $menu = array();
+      $menu['title']   = __('Etiqueta menu', 'ticketgenerator');
       $menu['page']    = "/plugins/ticketgenerator/front/index.php";
-   	return $menu;
+      return $menu;
    }
    // add tabs
-   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
+   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+   {
       // add ticket tab
       switch (get_class($item)) {
          case 'Ticket':
-            return array(1 => __('Gerar etiqueta','ticketgenerator'));
+            return array(1 => __('Gerar etiqueta', 'ticketgenerator'));
          default:
       }
    }
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
+   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
+   {
       switch (get_class($item)) {
          case 'Ticket':
             $config = new self();
@@ -30,10 +35,15 @@ class PluginTicketgeneratorConfig extends CommonDBTM {
       return true;
    }
    // ticket tab
-   function showFormDisplay() {
+   function showFormDisplay()
+   {
       global $CFG_GLPI, $DB;
       $ID = $_REQUEST['id'];
-      $url = $CFG_GLPI['url_base'];
+
+      $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+      $protocol = $is_secure ? 'https://' : 'http://';
+      $url = $protocol . $_SERVER['HTTP_HOST'];
+
       echo "<head>";
       echo "<script type='text/javascript'>";
       echo "function setIframeSource() {";
